@@ -83,11 +83,32 @@ test_motor = Motor(Port.B)
 test_motor.run(100) # runs the motor at 100 constant speed
 test_motor.run_target(3000, 360) # runs the motor at 3000deg/s at the target degrees of 360 (1 rotation), this should be used most of the time.
 ```
-```python
 
+Two Wheels Turn (using DriveBase):
+
+```python
+left_wheel = Motor(Port.B)
+right_wheel = Motor(Port.C)
+robot = DriveBase(left_wheel, right_wheel, wheel_diameter=55.5, axle_track=104) # defines DriveBase, its like telling the robot what the wheels are and what ports they are at
+robot.turn(110) # turns robot at 110 degrees (turns right), do -110 for a left turn
+```
+
+Two Wheel Straight:
+
+```python
+# define `robot` as DriveBase
+robot.straight(250) # robot goes straight for 250mm (aka 25 cm), slowly slows down so not actly 25cm (its a bit more than that)
+## the below code will stop it at more close to 25cm 
+robot.stop()
+left_wheel.brake()
+right_wheel.brake()
+## end of code
+```
 
 Naming Coneventions:
 medium_motor
 ev3
 left_wheel
 right_wheel
+
+***End Of Docs***
